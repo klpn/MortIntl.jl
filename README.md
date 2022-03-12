@@ -10,7 +10,7 @@ data extraction, and thus avoids dependency on SQL databases.
 
 Files from the mortality databases should be saved in the `data` subdirectory.
 The package uses 1x1 HMD period life tables, which should be prefixed by
-`[ISO 3166-code]_`, as given the configuration file (e.g. a life table for 
+`[ISO 3166-code]_`, as given in the configuration file (e.g. a life table for 
 Norwegian women should be saved as `NO_fltper_1x1.txt`).
 
 To generate a table with trends for proportion of deaths from circulatory

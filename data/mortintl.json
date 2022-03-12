@@ -1053,6 +1053,14 @@
             "iso3166": "DK",
             "startyear": 1952
         },
+        "4055": {
+            "alias": {
+		    "en": "Estonia",
+		    "sv": "Estland"
+	    },
+            "countryclass": 1,
+            "iso3166": "EE"
+        },
         "4070": {
             "alias": {
 		    "en": "Finland",
@@ -1122,6 +1130,22 @@
             "endyear": 2015,
             "iso3166": "IT",
             "startyear": 1951
+        },
+        "4186": {
+            "alias": {
+		    "en": "Latvia",
+		    "sv": "Lettland"
+	    },
+            "countryclass": 1,
+            "iso3166": "LV"
+        },
+        "4188": {
+            "alias": {
+		    "en": "Latvia",
+		    "sv": "Lithuania"
+	    },
+            "countryclass": 1,
+            "iso3166": "LT"
         },
         "4210": {
             "alias": {
