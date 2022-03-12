@@ -4,7 +4,7 @@ This package can be used to analyze trends in cause-specific mortality and life
 expectancy for different countries, with data from
 [WHO Mortality Database](https://www.who.int/data/data-collection-tools/who-mortality-database)
 and [Human Mortality Database](https://www.mortality.org/). It is conceptually
-similar to my [Mortchartgen](klpn/Mortchartgen.jl) package, and uses a similar
+similar to my [Mortchartgen](https://github.com/klpn/Mortchartgen.jl) package, and uses a similar
 [configuraton file](data/mortintl.json), but uses an AWK-based back-end for
 data extraction, and thus avoids dependency on SQL databases.
 
@@ -23,7 +23,7 @@ reuse (and load it from there, if it already has been saved).
 
 To plot life expectancy at birth vs proportion of deaths from circulatory
 diseases for all ages in women, in Denmark, Finland, Norway and Sweden, using
-[PGFPlotsX](KristofferC/PGFPlotsX.jl).
+[PGFPlotsX](https://github.com/KristofferC/PGFPlotsX.jl).
 
 ```{.julia}
  MortIntl.MortIntl.caprop_eplot([4050,4070,4220,4290], 2, "circ", "all",
