@@ -12,6 +12,10 @@ PGFPlotsX = "8314cec4-20b6-5062-9cdb-752b83310925"
 
 [compat]
 Colors = "0.12"
+PGFPlotsX = "1"
+CSV = "0.10"
+JSON = "0.21"
+DataFrames = "1"
 julia = "1"
 
 [extras]
