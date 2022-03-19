@@ -86,9 +86,12 @@ function caprop_eplot_ctry(p, pcol, ctry, sex, ca1, ca2, caage, eage, loadpath, 
         ef = hmddf_ctrysex(ctry, sex)
         ef_age = ef[ef[!, :Age].==eage, :]
         pef = innerjoin(ef_age, propf_sex_caage, on = [:Year=>:yr])
+        iso = conf["countries"]["$(ctry)"]["iso3166"]
+        syr = pef[!, :Year][1]
+        eyr = pef[!, :Year][end]
         @pgf push!(p, PlotInc({"mark=+", color = pcol},
                               Table([pef[!, :ex], pef[!, :rat]])),
-                   LegendEntry(conf["countries"]["$(ctry)"]["iso3166"]))
+                   LegendEntry("$(iso) $(syr)–$(eyr)"))
 end
 
 end
