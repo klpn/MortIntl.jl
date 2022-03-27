@@ -1111,6 +1111,14 @@
             "iso3166": "HU",
             "startyear": 1955
         },
+        "4160": {
+            "alias": {
+		    "en": "Iceland",
+		    "sv": "Island"
+	    },
+            "countryclass": 1,
+            "iso3166": "IS"
+        },
         "4170": {
             "alias": {
 		    "en": "Ireland",
@@ -1197,6 +1205,14 @@
             "iso3166": "RO",
             "startyear": 1969
         },
+        "4272": {
+            "alias": {
+		    "en": "Russia",
+		    "sv": "Ryssland"
+	    },
+            "countryclass": 1,
+            "iso3166": "RU"
+        },
         "4280": {
             "alias": {
 		    "en": "Spain",
@@ -1226,6 +1242,14 @@
             "endyear": 2013,
             "iso3166": "CH",
             "startyear": 1951
+        },
+        "4303": {
+            "alias": {
+		    "en": "Ukraine",
+		    "sv": "Ukraina"
+	    },
+            "countryclass": 1,
+            "iso3166": "UA"
         },
         "4310": {
             "alias": {
