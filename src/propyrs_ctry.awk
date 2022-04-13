@@ -1,6 +1,6 @@
 BEGIN {
         FS = ","
-        print "yr,age,sex,ca1,ca2,rat"
+        print "yr,li,age,sex,ca1,ca2,rat"
 }
 
 function add_age(v) {
@@ -26,7 +26,7 @@ END {
                                         n1 = ca1n[yr][age][sex]
                                         n2 = ca2n[yr][age][sex]
                                         rat = n1 / n2
-                                        printf("%d,%d,%d,%d,%d,%.3f\n", yr, age, sex, n1, n2, rat)
+                                        printf("%d,%d,%d,%d,%d,%d,%.3f\n", yr, li, age, sex, n1, n2, rat)
                                 }
                         }
                 }

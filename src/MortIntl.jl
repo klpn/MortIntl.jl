@@ -30,7 +30,7 @@ function ctry_caprop(ctry, ca1, ca2, loadpath, savepath)
         ca2d = conf["causes"][ca2]
         loadfullpath = normpath(loadpath, fname(ctry, ca1, ca2))
         if (loadpath != "" && ispath(loadfullpath))
-                df = CSV.File(loadfullpath) |> DataFrame
+                df = CSV.File(loadfullpath, types = Dict(:li => String)) |> DataFrame
         else
                 df = caprop(ctry, ca1d["causeexpr"], ca2d["causeexpr"])
         end
@@ -80,17 +80,29 @@ function caprop_eplot(ctries, sex, ca1, ca2, caage, eage, lang, loadpath, savepa
         p
 end
 
+function licmp(li1, li2)
+        if li1 == li2
+                return "{}"
+        else
+                return li1
+        end
+end
+
 function caprop_eplot_ctry(p, pcol, ctry, sex, ca1, ca2, caage, eage, loadpath, savepath)
         propf = ctry_caprop(ctry, ca1, ca2, loadpath, savepath)[:propframe]
         propf_sex_caage = propf[(propf[!, :sex].==sex) .& (propf[!, :age].==caage), :]
         ef = hmddf_ctrysex(ctry, sex)
         ef_age = ef[ef[!, :Age].==eage, :]
         pef = innerjoin(ef_age, propf_sex_caage, on = [:Year=>:yr])
+        liprev = vcat("", pef[!, :li][1:length(pef[!, :li])-1])
+        listart = map(licmp, pef[!, :li], liprev)
         iso = conf["countries"]["$(ctry)"]["iso3166"]
         syr = pef[!, :Year][1]
         eyr = pef[!, :Year][end]
-        @pgf push!(p, PlotInc({"mark=+", color = pcol},
-                              Table([pef[!, :ex], pef[!, :rat]])),
+        @pgf push!(p, PlotInc({"mark=+", "nodes near coords",
+                               "point meta=explicit symbolic", color = pcol},
+                              Table({meta = "meta"}, ["x" => pef[!, :ex], "y" => pef[!, :rat],
+                                     "meta" => listart])),
                    LegendEntry("$(iso) $(syr)–$(eyr)"))
 end
 
