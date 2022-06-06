@@ -30,7 +30,7 @@ function ctry_caprop(ctry, ca1, ca2, loadpath, savepath)
         ca2d = conf["causes"][ca2]
         loadfullpath = normpath(loadpath, fname(ctry, ca1, ca2))
         if (loadpath != "" && ispath(loadfullpath))
-                df = CSV.File(loadfullpath, types = Dict(:li => String)) |> DataFrame
+                df = CSV.File(loadfullpath) |> DataFrame
         else
                 df = caprop(ctry, ca1d["causeexpr"], ca2d["causeexpr"])
         end
@@ -84,7 +84,7 @@ function licmp(li1, li2)
         if li1 == li2
                 return "{}"
         else
-                return li1
+                return "($li1)"
         end
 end
 
@@ -99,7 +99,7 @@ function caprop_eplot_ctry(p, pcol, ctry, sex, ca1, ca2, caage, eage, loadpath, 
         iso = conf["countries"]["$(ctry)"]["iso3166"]
         syr = pef[!, :Year][1]
         eyr = pef[!, :Year][end]
-        @pgf push!(p, PlotInc({"mark=+", "nodes near coords",
+        @pgf push!(p, PlotInc({"mark=+", "nodes near coords", "font=\\footnotesize",
                                "point meta=explicit symbolic", color = pcol},
                               Table({meta = "meta"}, ["x" => pef[!, :ex], "y" => pef[!, :rat],
                                      "meta" => listart])),

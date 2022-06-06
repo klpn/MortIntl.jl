@@ -982,6 +982,14 @@
             "startyear": 1950,
 	    "wppstart": 2006
         },
+        "2120": {
+            "alias": {
+		    "en": "Chile",
+		    "sv": "Chile"
+	    },
+            "countryclass": 1,
+            "iso3166": "CL"
+        },
         "2450": {
             "alias": {
 		    "en": "USA",
@@ -992,6 +1000,14 @@
             "iso3166": "US",
             "startyear": 1950,
 	    "wppstart": 2008
+        },
+        "3090": {
+            "alias": {
+		    "en": "Hong Kong",
+		    "sv": "Hongkong"
+	    },
+            "countryclass": 1,
+            "iso3166": "HK"
         },
         "3150": {
             "alias": {
@@ -1013,6 +1029,14 @@
             "iso3166": "JP",
             "startyear": 1950
         },
+        "3325": {
+            "alias": {
+		    "en": "Republic of Korea",
+		    "sv": "Sydkorea"
+	    },
+            "countryclass": 1,
+            "iso3166": "KR"
+        },
         "4010": {
             "alias": {
 		    "en": "Austria",
@@ -1022,6 +1046,14 @@
             "endyear": 2016,
             "iso3166": "AT",
             "startyear": 1955
+        },
+        "4018": {
+            "alias": {
+		    "en": "Belarus",
+		    "sv": "Belarus"
+	    },
+            "countryclass": 1,
+            "iso3166": "BY"
         },
         "4020": {
             "alias": {
@@ -1042,6 +1074,22 @@
             "endyear": 2014,
             "iso3166": "BG",
             "startyear": 1964
+        },
+        "4038": {
+            "alias": {
+		    "en": "Croatia",
+		    "sv": "Kroatien"
+	    },
+            "countryclass": 1,
+            "iso3166": "HR"
+        },
+        "4045": {
+            "alias": {
+		    "en": "Czech Republic",
+		    "sv": "Tjeckien"
+	    },
+            "countryclass": 1,
+            "iso3166": "CZ"
         },
         "4050": {
             "alias": {
@@ -1212,6 +1260,22 @@
 	    },
             "countryclass": 1,
             "iso3166": "RU"
+        },
+        "4274": {
+            "alias": {
+		    "en": "Slovakia",
+		    "sv": "Slovakien"
+	    },
+            "countryclass": 1,
+            "iso3166": "SK"
+        },
+        "4276": {
+            "alias": {
+		    "en": "Slovenia",
+		    "sv": "Slovenien"
+	    },
+            "countryclass": 1,
+            "iso3166": "SI"
         },
         "4280": {
             "alias": {
