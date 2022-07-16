@@ -55,7 +55,8 @@ function caprop(ctry, ca1es, ca2es)
         sort(df, [:yr, :age])
 end
 
-function caprop_eplot(ctries, sex, ca1, ca2, caage, eage, lang, loadpath, savepath)
+function caprop_eplot(ctries, sex, ca1, ca2, caage, eage, lang, loadpath, savepath, yrs, legend)
+        ys = collect(yrs)
         ca1lab = conf["causes"][ca1]["alias"][lang]
         ca2lab = conf["causes"][ca2]["alias"][lang]
         sexlab = conf["sexes"]["$sex"]["alias"][lang]
@@ -66,16 +67,21 @@ function caprop_eplot(ctries, sex, ca1, ca2, caage, eage, lang, loadpath, savepa
         else
                 pgfnf = @pgf {}
         end
+        if legend
+                yrlab = ""
+        else
+                yrlab = " $(ys[1])–$(ys[end])"
+        end
         p = @pgf Axis({xlabel = "e($(eage))",
                       ylabel = "$dlab $ca1lab/$ca2lab $(agest[caage])–$(ageend[caage])",
                       "yticklabel style"=pgfnf,
                       "legend style"={"font=\\tiny"},
                       legend_pos="outer north east",
-                      title = "$elab vs $dlab $sexlab", xmajorgrids, ymajorgrids})
+                      title = "$elab vs $dlab $sexlab$yrlab", xmajorgrids, ymajorgrids})
         plotcolors = distinguishable_colors(length(ctries)+1, [RGB(1,1,1)])[2:end]
         for (i, ctry) in enumerate(ctries)
                 caprop_eplot_ctry(p, plotcolors[i], ctry, sex, ca1, ca2,
-                                  caage, eage, loadpath, savepath)
+                                  caage, eage, loadpath, savepath, yrs, legend)
         end
         p
 end
@@ -88,22 +94,32 @@ function licmp(li1, li2)
         end
 end
 
-function caprop_eplot_ctry(p, pcol, ctry, sex, ca1, ca2, caage, eage, loadpath, savepath)
+function caprop_eplot_ctry(p, pcol, ctry, sex, ca1, ca2, caage, eage, loadpath, savepath, yrs, legend)
+        ys = collect(yrs)
         propf = ctry_caprop(ctry, ca1, ca2, loadpath, savepath)[:propframe]
-        propf_sex_caage = propf[(propf[!, :sex].==sex) .& (propf[!, :age].==caage), :]
+        propf_sex_caage = propf[((propf[!, :sex].==sex) .& (propf[!, :age].==caage)
+                                 .& (propf[!, :yr].>=ys[1]) .& (propf[!, :yr].<=ys[end])), :]
         ef = hmddf_ctrysex(ctry, sex)
         ef_age = ef[ef[!, :Age].==eage, :]
         pef = innerjoin(ef_age, propf_sex_caage, on = [:Year=>:yr])
-        liprev = vcat("", pef[!, :li][1:length(pef[!, :li])-1])
-        listart = map(licmp, pef[!, :li], liprev)
-        iso = conf["countries"]["$(ctry)"]["iso3166"]
-        syr = pef[!, :Year][1]
-        eyr = pef[!, :Year][end]
-        @pgf push!(p, PlotInc({"mark=+", "nodes near coords", "font=\\footnotesize",
-                               "point meta=explicit symbolic", color = pcol},
-                              Table({meta = "meta"}, ["x" => pef[!, :ex], "y" => pef[!, :rat],
-                                     "meta" => listart])),
-                   LegendEntry("$(iso) $(syr)–$(eyr)"))
+        if size(pef, 1) > 0
+                liprev = vcat("", pef[!, :li][1:length(pef[!, :li])-1])
+                listart = map(licmp, pef[!, :li], liprev)
+                iso = conf["countries"]["$(ctry)"]["iso3166"]
+                syr = pef[!, :Year][1]
+                eyr = pef[!, :Year][end]
+                if !(legend)
+                        listart[1] = "($iso)"
+                        listart[2:end] .= "{}"
+                end
+                @pgf push!(p, PlotInc({"mark=+", "nodes near coords", "font=\\footnotesize",
+                                       "point meta=explicit symbolic", color = pcol},
+                                      Table({meta = "meta"}, ["x" => pef[!, :ex], "y" => pef[!, :rat],
+                                             "meta" => listart])))
+                if legend
+                        @pgf push!(p,  LegendEntry("$(iso) $(syr)–$(eyr)"))
+                end
+        end
 end
 
 end
