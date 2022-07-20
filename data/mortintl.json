@@ -1203,6 +1203,14 @@
             "countryclass": 1,
             "iso3166": "LT"
         },
+        "4190": {
+            "alias": {
+		    "en": "Luxembourg",
+		    "sv": "Luxemburg"
+	    },
+            "countryclass": 1,
+            "iso3166": "LU"
+        },
         "4210": {
             "alias": {
 		    "en": "Neatherlands",
