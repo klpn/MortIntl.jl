@@ -23,9 +23,11 @@ reuse (and load it from there, if it already has been saved).
 
 To plot life expectancy at birth vs proportion of deaths from circulatory
 diseases for all ages in women, in Denmark, Finland, Norway and Sweden, using
-[PGFPlotsX](https://github.com/KristofferC/PGFPlotsX.jl).
+[PGFPlotsX](https://github.com/KristofferC/PGFPlotsX.jl), for the years
+1950–2019, if data is available, and with ICD version shifts plotted in
+parentheses.
 
 ```{.julia}
  MortIntl.MortIntl.caprop_eplot([4050,4070,4220,4290], 2, "circ", "all",
- 1, 0, "en", MortIntl.datapath, MortIntl.datapath)
+ 1, 0, "en", MortIntl.datapath, MortIntl.datapath, 1950:2019, true)
 ```
