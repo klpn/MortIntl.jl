@@ -6,7 +6,7 @@ BEGIN {
 function add_age(v) {
         for(i=1; i<=25; i++) {
                 c = i+9
-                v[$4][i][$7] += $c
+                v[$4,i,$7] += $c
         }
 }
 
@@ -19,16 +19,14 @@ $5~li && $6~ca2 {
 }
 
 END {
-        for (yr in ca1n) {
-                for (age in ca1n[yr]) {
-                        for (sex in ca1n[yr][age]) {
-                                if (ca2n[yr][age][sex] > 0) {
-                                        n1 = ca1n[yr][age][sex]
-                                        n2 = ca2n[yr][age][sex]
-                                        rat = n1 / n2
-                                        printf("%d,%d,%d,%d,%d,%d,%.3f\n", yr, li, age, sex, n1, n2, rat)
-                                }
-                        }
-                }
+        for (yragesex in ca1n) {
+                split(yragesex, yassep, SUBSEP)
+                n1 = ca1n[yragesex]
+                n2 = ca2n[yragesex]
+                rat = n1 / n2
+                yr = yassep[1]
+                age = yassep[2]
+                sex = yassep[3]
+                printf("%d,%d,%d,%d,%d,%d,%.3f\n", yr, li, age, sex, n1, n2, rat)
         }
 }
