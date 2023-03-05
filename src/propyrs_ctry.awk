@@ -23,10 +23,13 @@ END {
                 split(yragesex, yassep, SUBSEP)
                 n1 = ca1n[yragesex]
                 n2 = ca2n[yragesex]
-                rat = n1 / n2
-                yr = yassep[1]
-                age = yassep[2]
-                sex = yassep[3]
-                printf("%d,%d,%d,%d,%d,%d,%.3f\n", yr, li, age, sex, n1, n2, rat)
+                if (n2 > 0) {
+                        rat = n1 / n2
+                        yr = yassep[1]
+                        age = yassep[2]
+                        sex = yassep[3]
+                        printf("%d,%d,%d,%d,%d,%d,%.3f\n",
+                               yr, li, age, sex, n1, n2, rat)
+                }
         }
 }
